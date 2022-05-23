@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -13,6 +14,9 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1> ValueUp v .2 </h1>
+        <Link href="/LayoutTest">
+          <h3>Layout Test Page</h3>
+        </Link>
       </main>
     </div>
   );
