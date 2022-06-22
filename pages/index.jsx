@@ -12,11 +12,8 @@ export default function Home() {
           content="대외활동, 동아리 등 대학생, 취준생들을 위한 플랫폼"
         />
       </Head>
-      <main className={styles.main}>
-        <h1> ValueUp v .2 </h1>
-        <Link href="/LayoutTest">
-          <h3>Layout Test Page</h3>
-        </Link>
+      <main>
+        <h1>Main Page</h1>
       </main>
     </div>
   );

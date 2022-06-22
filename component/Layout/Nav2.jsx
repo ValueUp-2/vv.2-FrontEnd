@@ -72,20 +72,33 @@ const Footer = styled.footer`
   padding: 0.25rem;
 `;
 
-const Navbar2 = () => {
-  return (
-    <Container>
-      <NavBar>NavBar</NavBar>
-      <Main>Main</Main>
-      <SideBar>SideBar</SideBar>
-      <ContentBox>
-        <Content1>Content1</Content1>
-        <Content2>Content2</Content2>
-        <Content3>Content3</Content3>
-      </ContentBox>
-      <Footer>Footer</Footer>
-    </Container>
-  );
-};
+// const Navbar2 = ({ children }) => {
+//   return (
+//     <Container>
+//       <NavBar>NavBar</NavBar>
+//       {children}
+//       {/* <Main>Main</Main>
+//       <SideBar>SideBar</SideBar>
+//       <ContentBox>
+//         <Content1>Content1</Content1>
+//         <Content2>Content2</Content2>
+//         <Content3>Content3</Content3>
+//       </ContentBox> */}
+//       <Footer>Footer</Footer>
+//     </Container>
+//   );
+// };
 
-export default Navbar2;
+// export default Navbar2;
+
+export {
+  Container,
+  NavBar,
+  Footer,
+  ContentBox,
+  Content1,
+  Content2,
+  Content3,
+  SideBar,
+  Main,
+};
