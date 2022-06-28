@@ -16,7 +16,7 @@ period(활동 기간 (일 수)) -> 숫자만
 url(홈페이지) -> 웹사이트 주소 
  */
 
-const Container = styled.div`
+const Layout = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -24,71 +24,223 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const StringInput = styled.input``;
-const ContentInput = styled.textarea``;
+const InputContainer = styled.div``;
+
+const BtnContainer = styled.div``;
+
+const KindContainer = styled.div`
+  display: flex;
+`;
 
 const InputDiv = styled.div`
   display: flex;
-  margin: 0px 0px 10px 0px;
+  margin: 5px 0px 5px 0px;
+  align-items: center;
 `;
 
-const WhatInput = styled.p``;
+const WhatInput = styled.p`
+  width: 160px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+const StringInput = styled.input`
+  width: 600px;
+  font-size: 20px;
+  height: 50px;
+`;
+
+const ContentInput = styled.textarea`
+  height: 300px;
+  width: 600px;
+  font-size: 20px;
+`;
+
+const KindInput = styled.input`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
+
+const NumberInput = styled.input`
+  width: 600px;
+  font-size: 20px;
+  height: 50px;
+`;
+
+const KindName = styled.p`
+  font-size: 20px;
+  margin: 0px 30px 0px 10px;
+`;
 
 const SubmitBtn = styled.button`
   cursor: pointer;
 `;
 
-const KindInput = styled.input``;
-
-const NumberInput = styled.input``;
-
-const InputContents = ({ name, input }) => {
-  return (
-    <InputDiv>
-      <WhatInput>{name}</WhatInput>
-      {input}
-    </InputDiv>
-  );
-};
-
-const KindDiv = () => {
-  return (
-    <>
-      <KindInput type="radio" name="kind" />
-      <KindInput type="radio" name="kind" />
-      <KindInput type="radio" name="kind" />
-      <KindInput type="radio" name="kind" />
-    </>
-  );
-};
-
 export default function WritingNotice() {
+  const KindDiv = () => {
+    const kindArr = ['인턴', '채용', '대외활동', '공모전', '동아리'];
+    return (
+      <>
+        {kindArr.map((kind) => (
+          <KindContainer key={kind}>
+            <KindInput
+              type="radio"
+              name="kind"
+              value={kind}
+              onChange={onChangeInput}
+              checked={input.kind === kind}
+            />
+            <KindName>{kind}</KindName>
+          </KindContainer>
+        ))}
+      </>
+    );
+  };
+
+  // const InputContents = ({ name, input }) => {
+  //   return (
+  //     <InputDiv>
+  //       <WhatInput>{name}</WhatInput>
+  //       {input}
+  //     </InputDiv>
+  //   );
+  // };
+
   const [input, setInput] = useState({
-    id: 0,
     title: '',
     content: '',
     kind: '',
-    recruitment: 0,
+    recruitment: '',
     start_date: '',
     end_date: '',
-    period: 0,
+    period: '',
     url: '',
   });
+
+  const onChangeInput = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
 
   const onClickSubmit = () => {
     console.log(input);
   };
 
   return (
-    <Container>
-      <InputContents name="제목" input={<StringInput />} />
-      <InputContents name="내용" input={<ContentInput />} />
-      <InputContents name="게시판 종류" input={<KindDiv />} />
-      <InputContents name="모집인원" input={<NumberInput />} />
-      <InputContents name="접수기간" />
-      <InputContents name="활동일수" input={<NumberInput />} />
-      <InputContents name="홈페이지" input={<StringInput />} />
-      <SubmitBtn onClick={onClickSubmit} />
-    </Container>
+    <Layout>
+      <InputContainer>
+        <InputDiv>
+          <WhatInput>제목</WhatInput>
+          <StringInput
+            name="title"
+            onChange={onChangeInput}
+            value={input.title}
+          />
+        </InputDiv>
+
+        <InputDiv>
+          <WhatInput>상세 내용</WhatInput>
+          <ContentInput
+            name="content"
+            onChange={onChangeInput}
+            value={input.content}
+          />
+        </InputDiv>
+
+        <InputDiv>
+          <WhatInput>게시판 종류</WhatInput>
+          <KindDiv name="kind" onChange={onChangeInput} value={input.kind} />
+        </InputDiv>
+
+        <InputDiv>
+          <WhatInput>모집 인원</WhatInput>
+          <NumberInput
+            name="recruitment"
+            onChange={onChangeInput}
+            value={input.recruitment}
+          />
+        </InputDiv>
+
+        <InputDiv>
+          <WhatInput>접수 기간</WhatInput>
+        </InputDiv>
+
+        <InputDiv>
+          <WhatInput>활동 기간</WhatInput>
+          <NumberInput
+            name="period"
+            onChange={onChangeInput}
+            value={input.period}
+          />
+        </InputDiv>
+
+        <InputDiv>
+          <WhatInput>웹사이트 주소</WhatInput>
+          <StringInput name="url" onChange={onChangeInput} value={input.url} />
+        </InputDiv>
+
+        {/* <InputContents
+          name="제목"
+          input={
+            <StringInput
+              name="title"
+              onChange={onChangeInput}
+              value={input.title}
+            />
+          }
+        />
+        <InputContents
+          name="상세 내용"
+          input={
+            <ContentInput
+              name="content"
+              onChange={onChangeInput}
+              value={input.content}
+            />
+          }
+        />
+        <InputContents
+          name="게시판 종류"
+          input={
+            <KindDiv name="kind" onChange={onChangeInput} value={input.kind} />
+          }
+        />
+        <InputContents
+          name="모집 인원"
+          input={
+            <NumberInput
+              name="recruitment"
+              onChange={onChangeInput}
+              value={input.recruitment}
+            />
+          }
+        />
+        <InputContents name="접수 기간" />
+        <InputContents
+          name="활동 기간"
+          input={
+            <NumberInput
+              name="period"
+              onChange={onChangeInput}
+              value={input.period}
+            />
+          }
+        />
+        <InputContents
+          name="웹사이트 주소 "
+          input={
+            <StringInput
+              name="url"
+              onChange={onChangeInput}
+              value={input.url}
+            />
+          }
+        /> */}
+      </InputContainer>
+      <BtnContainer>
+        <SubmitBtn onClick={onClickSubmit}>확인</SubmitBtn>
+      </BtnContainer>
+    </Layout>
   );
 }
