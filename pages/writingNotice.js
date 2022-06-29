@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { ko } from 'date-fns/locale';
 
 /*
 공고 : announcement
@@ -32,11 +35,20 @@ const KindContainer = styled.div`
   display: flex;
 `;
 
+const RecruitmentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 600px;
+`;
+
 const InputDiv = styled.div`
   display: flex;
   margin: 5px 0px 5px 0px;
   align-items: center;
 `;
+
+const RecruitmentDiv = styled.div``;
 
 const WhatInput = styled.p`
   width: 160px;
@@ -49,12 +61,14 @@ const StringInput = styled.input`
   width: 600px;
   font-size: 20px;
   height: 50px;
+  padding-left: 13px;
 `;
 
 const ContentInput = styled.textarea`
   height: 300px;
   width: 600px;
   font-size: 20px;
+  padding: 13px 13px 13px 13px;
 `;
 
 const KindInput = styled.input`
@@ -67,6 +81,15 @@ const NumberInput = styled.input`
   width: 600px;
   font-size: 20px;
   height: 50px;
+  padding-left: 13px;
+`;
+
+const RecruitmentInput = styled(DatePicker)`
+  display: flex;
+  height: 50px;
+  font-size: 20px;
+  width: 250px;
+  text-align: center;
 `;
 
 const KindName = styled.p`
@@ -113,8 +136,8 @@ export default function WritingNotice() {
     content: '',
     kind: '',
     recruitment: '',
-    start_date: '',
-    end_date: '',
+    start_date: new Date(),
+    end_date: new Date(),
     period: '',
     url: '',
   });
@@ -164,10 +187,36 @@ export default function WritingNotice() {
 
         <InputDiv>
           <WhatInput>접수 기간</WhatInput>
+          <RecruitmentContainer>
+            <RecruitmentDiv>
+              <RecruitmentInput
+                name="start_date"
+                selected={input.start_date}
+                dateFormat="yyyy/MM/dd"
+                locale={ko}
+                onChange={(e) => {
+                  setInput({ ...input, start_date: e });
+                }}
+              />
+            </RecruitmentDiv>
+            <p style={{ fontSize: 20 }}>~</p>
+            <RecruitmentDiv>
+              <RecruitmentInput
+                name="start_date"
+                selected={input.end_date}
+                dateFormat="yyyy/MM/dd"
+                minDate={input.start_date}
+                locale={ko}
+                onChange={(e) => {
+                  setInput({ ...input, end_date: e });
+                }}
+              />
+            </RecruitmentDiv>
+          </RecruitmentContainer>
         </InputDiv>
 
         <InputDiv>
-          <WhatInput>활동 기간</WhatInput>
+          <WhatInput>활동 일 수</WhatInput>
           <NumberInput
             name="period"
             onChange={onChangeInput}
