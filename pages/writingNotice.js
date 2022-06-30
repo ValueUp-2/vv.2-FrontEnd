@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -29,7 +29,12 @@ const Layout = styled.div`
 
 const InputContainer = styled.div``;
 
-const BtnContainer = styled.div``;
+const BtnContainer = styled.div`
+  width: 740px;
+  display: flex;
+  margin-top: 50px;
+  justify-content: flex-end;
+`;
 
 const KindContainer = styled.div`
   display: flex;
@@ -62,6 +67,8 @@ const StringInput = styled.input`
   font-size: 20px;
   height: 50px;
   padding-left: 13px;
+  border-radius: 10px;
+  border: 1px solid #343439;
 `;
 
 const ContentInput = styled.textarea`
@@ -69,6 +76,8 @@ const ContentInput = styled.textarea`
   width: 600px;
   font-size: 20px;
   padding: 13px 13px 13px 13px;
+  border-radius: 10px;
+  border: 1px solid #343439;
 `;
 
 const KindInput = styled.input`
@@ -82,6 +91,8 @@ const NumberInput = styled.input`
   font-size: 20px;
   height: 50px;
   padding-left: 13px;
+  border-radius: 10px;
+  border: 1px solid #343439;
 `;
 
 const RecruitmentInput = styled(DatePicker)`
@@ -90,6 +101,23 @@ const RecruitmentInput = styled(DatePicker)`
   font-size: 20px;
   width: 250px;
   text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid #343439;
+`;
+
+const FileUploadBtn = styled.button`
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  background-color: #f9e79f;
+  cursor: pointer;
+  :hover {
+    background-color: #f7dc6f;
+    transition-duration: 0.2s;
+  }
 `;
 
 const KindName = styled.p`
@@ -98,7 +126,17 @@ const KindName = styled.p`
 `;
 
 const SubmitBtn = styled.button`
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  background-color: #f4d03f;
   cursor: pointer;
+  :hover {
+    background-color: #f1c40f;
+    transition-duration: 0.2s;
+  }
 `;
 
 export default function WritingNotice() {
@@ -142,9 +180,19 @@ export default function WritingNotice() {
     url: '',
   });
 
+  const imgInput = useRef();
+
   const onChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
+  const onClickImgUpload = () => {
+    imgInput.current.click();
+  };
+
+  // const onChangeInputNum = (e) => {
+  //   if (/[^0-9]/g.test(e.target.value))
+  // }
 
   const onClickSubmit = () => {
     console.log(input);
@@ -227,6 +275,12 @@ export default function WritingNotice() {
         <InputDiv>
           <WhatInput>웹사이트 주소</WhatInput>
           <StringInput name="url" onChange={onChangeInput} value={input.url} />
+        </InputDiv>
+
+        <InputDiv>
+          <WhatInput>이미지</WhatInput>
+          <input type="file" style={{ display: 'none' }} ref={imgInput} />
+          <FileUploadBtn onClick={onClickImgUpload}>파일 선택</FileUploadBtn>
         </InputDiv>
 
         {/* <InputContents
