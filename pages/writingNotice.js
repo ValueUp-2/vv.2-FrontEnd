@@ -125,6 +125,12 @@ const KindName = styled.p`
   margin: 0px 30px 0px 10px;
 `;
 
+const ImgName = styled.p`
+  display: flex;
+  font-size: 20px;
+  margin-left: 10px;
+`;
+
 const SubmitBtn = styled.button`
   width: 200px;
   height: 50px;
@@ -178,12 +184,18 @@ export default function WritingNotice() {
     end_date: new Date(),
     period: '',
     url: '',
+    img: '',
   });
 
   const imgInput = useRef();
 
   const onChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  const onChangeImg = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.files });
+    console.log(e.target.files);
   };
 
   const onClickImgUpload = () => {
@@ -230,6 +242,8 @@ export default function WritingNotice() {
             name="recruitment"
             onChange={onChangeInput}
             value={input.recruitment}
+            type="number"
+            placeholder="EX) 15"
           />
         </InputDiv>
 
@@ -269,6 +283,8 @@ export default function WritingNotice() {
             name="period"
             onChange={onChangeInput}
             value={input.period}
+            type="number"
+            placeholder="EX) 90"
           />
         </InputDiv>
 
@@ -279,8 +295,16 @@ export default function WritingNotice() {
 
         <InputDiv>
           <WhatInput>이미지</WhatInput>
-          <input type="file" style={{ display: 'none' }} ref={imgInput} />
+          <input
+            type="file"
+            accept="image/*"
+            style={{ display: 'none' }}
+            ref={imgInput}
+            onChange={onChangeImg}
+            name="img"
+          />
           <FileUploadBtn onClick={onClickImgUpload}>파일 선택</FileUploadBtn>
+          <ImgName>{input.img[0] ? input.img[0].name : ''}</ImgName>
         </InputDiv>
 
         {/* <InputContents
