@@ -30,9 +30,9 @@ const Layout = styled.div`
 const InputContainer = styled.div``;
 
 const BtnContainer = styled.div`
-  width: 740px;
+  width: 570px;
   display: flex;
-  margin-top: 50px;
+  margin-top: 40px;
   justify-content: flex-end;
 `;
 
@@ -44,7 +44,7 @@ const RecruitmentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 600px;
+  width: 450px;
 `;
 
 const InputDiv = styled.div`
@@ -56,40 +56,40 @@ const InputDiv = styled.div`
 const RecruitmentDiv = styled.div``;
 
 const WhatInput = styled.p`
-  width: 160px;
-  font-size: 20px;
+  width: 130px;
+  font-size: 14px;
   display: flex;
   align-items: center;
 `;
 
 const StringInput = styled.input`
-  width: 600px;
-  font-size: 20px;
-  height: 50px;
+  width: 450px;
+  font-size: 14px;
+  height: 35px;
   padding-left: 13px;
   border-radius: 10px;
   border: 1px solid #343439;
 `;
 
 const ContentInput = styled.textarea`
-  height: 300px;
-  width: 600px;
-  font-size: 20px;
+  height: 200px;
+  width: 450px;
+  font-size: 14px;
   padding: 13px 13px 13px 13px;
   border-radius: 10px;
   border: 1px solid #343439;
 `;
 
 const KindInput = styled.input`
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   cursor: pointer;
 `;
 
 const NumberInput = styled.input`
-  width: 600px;
-  font-size: 20px;
-  height: 50px;
+  width: 450px;
+  font-size: 14px;
+  height: 35px;
   padding-left: 13px;
   border-radius: 10px;
   border: 1px solid #343439;
@@ -97,9 +97,9 @@ const NumberInput = styled.input`
 
 const RecruitmentInput = styled(DatePicker)`
   display: flex;
-  height: 50px;
-  font-size: 20px;
-  width: 250px;
+  height: 35px;
+  font-size: 14px;
+  width: 200px;
   text-align: center;
   cursor: pointer;
   border-radius: 10px;
@@ -107,11 +107,11 @@ const RecruitmentInput = styled(DatePicker)`
 `;
 
 const FileUploadBtn = styled.button`
-  width: 120px;
-  height: 50px;
+  width: 100px;
+  height: 35px;
   border-radius: 10px;
   border: none;
-  font-size: 20px;
+  font-size: 14px;
   background-color: #f9e79f;
   cursor: pointer;
   :hover {
@@ -121,22 +121,24 @@ const FileUploadBtn = styled.button`
 `;
 
 const KindName = styled.p`
-  font-size: 20px;
-  margin: 0px 30px 0px 10px;
+  font-size: 14px;
+  margin: 0px 22px 0px 5px;
+  align-items: center;
+  display: flex;
 `;
 
 const ImgName = styled.p`
   display: flex;
-  font-size: 20px;
+  font-size: 14px;
   margin-left: 10px;
 `;
 
 const SubmitBtn = styled.button`
-  width: 200px;
-  height: 50px;
+  width: 150px;
+  height: 35px;
   border-radius: 10px;
   border: none;
-  font-size: 20px;
+  font-size: 14px;
   background-color: #f4d03f;
   cursor: pointer;
   :hover {
@@ -201,10 +203,6 @@ export default function WritingNotice() {
   const onClickImgUpload = () => {
     imgInput.current.click();
   };
-
-  // const onChangeInputNum = (e) => {
-  //   if (/[^0-9]/g.test(e.target.value))
-  // }
 
   const onClickSubmit = () => {
     console.log(input);
